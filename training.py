@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
+# importing all the required libraries
 
 
 from keras.preprocessing.image import ImageDataGenerator
@@ -12,16 +9,16 @@ from matplotlib import pyplot
 
 
 
-# In[2]:
+# standardizing all the images to fixed size and initializing the dataset existing directories
 
 
-img_width,img_height =800,600
+img_width,img_height =150,150
 train_data_dir='dataset/train'
 validation_data_dir='dataset/test'
 batch_size=8
 
 
-# In[3]:
+# checks the color channel of the given images and sets the input shape accordingly
 
 
 if K.image_data_format() == 'channels_first' :
@@ -30,12 +27,11 @@ else:
     input_shape = (img_width,img_height,3)
 
 
-# In[4]:
+# assigning all the preprocessing metrics on both the training and testing dataset
 
 
 train_datagen = ImageDataGenerator(
      rescale=1.0/255,
-    rotation_range=40,
     width_shift_range=0.2,
     height_shift_range=0.2,
     shear_range=0.2,
@@ -50,7 +46,7 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 
-# In[6]:
+# actual preprocessing happens
 
 
 train_generator = train_datagen.flow_from_directory(
@@ -66,7 +62,7 @@ validation_generator = test_datagen.flow_from_directory(
      class_mode='categorical')
 
 
-# In[ ]:
+
 
 
 
