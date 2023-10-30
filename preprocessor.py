@@ -110,7 +110,7 @@ plot_distribution(validation_generator)
 
 # randomly select 25 images from each training class
 
-random_images = [] 
+random_images = []
 
 def plot_random_images(train_generator):
     # get the class labels
@@ -179,7 +179,3 @@ def plot_pixel_intensity_distribution(random_images):
     pyplot.show()
 
 plot_pixel_intensity_distribution(random_images)
-
-
-
-
