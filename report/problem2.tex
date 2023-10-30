@@ -1,0 +1,205 @@
+\section{Pseudocode}
+  \subsection{Sine() \& Cos()}
+    \begin{flushleft}
+    We arrive at a value for sine/cos of a number using the Mclaurin series expansion.
+    \end{flushleft}
+    $$\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots$$
+    $$\cos(x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots$$
+
+
+    \begin{algorithm}
+      \caption{McLaurin Series}\label{Sin of}
+      \begin{tabbing}
+        \textbf{Parameters:}\\
+        \hspace{1em}\textit{rad(float):} The input angle value in radians for which we want to calculate the sine.\\
+        \hspace{1em}\textit{precision(int):} Number of terms in the series expansion used to approximate the sine value.\\
+        
+        \textbf{Returns:}\\
+          \hspace{1em}\textit{float:} The calculated sine value for the input angle in radians.\\
+      \end{tabbing}
+      \begin{algorithmic}[1]
+        \Function{calculate\_sin}{$rad, precision$}
+          \State $sin\_val \gets 0$ 
+            \For{$i \gets 0$ to $precision$} \Comment{Iterate upto the desired precision}
+              \State $term \gets (-1)^i * rad^{2i+1} / (2i+1)!$ \Comment{Value of the current term in the expansion}
+              \State $sin\_val \gets sin\_val + term$ 
+            \EndFor
+          \State \Return $sin\_val$
+        \EndFunction
+      \end{algorithmic}
+      \hspace*{2em}
+      \begin{algorithmic}[1]
+        \Function{calculate\_cos}{$rad, precision$}
+          \State $cos\_val \gets 1$
+            \For{i $\gets$ 1 to precision} \Comment{Iterate upto the desired precision}
+              \State $term \gets (-1)^i * \frac{rad^{2i}}{(2i)!}$ \Comment{Value of the current term in the expansion}
+              \State $cos\_val \gets cos\_val + term$
+            \EndFor
+          \State \Return $cos\_val$
+        \EndFunction
+      \end{algorithmic}
+    \end{algorithm}
+    \pagebreak
+    \begin{flushleft}
+    There are various methods of calculating sine/cos of a number using various infinite series like Taylor series, McLauren series, power series and Euler's formula.
+    While each of the methods have advantages and disadvantages of their own, McLaurin Series has some distinct advantages over other methods. They are as follows :
+    \end{flushleft}
+    \begin{itemize}
+      \item \textbf{Simplicity} : MacLaurin Series simple to use, as it only uses relatively simple mathematical functions. Due to the same reason it is easy to implement a computer program of it.
+      \item \textbf{Convergence} : The McLaurin series converges for all values of x, which means that it can be used to calculate the sine function accurately for any angle.
+      \item  \textbf{Accuracy} : The accuracy of Maclaurin series increases with every new term that is added. So, with every iteration it rapidly converges to true value of sin.
+      \item \textbf{Versatility}: The McLaurin series can be easily extended to calculate other trigonometric functions, such as cosine and tangent, by simply changing the coefficients of the terms in the series.
+    \end{itemize}
+
+  \subsection{Pi($\pi$)}
+    \begin{flushleft}
+      The value of pi is calculated using Leibniz formula\cite{Ferraro2008}.
+    \end{flushleft}
+    $${\frac {\pi }{4}}=\sum _{k=0}^{\infty }{\frac {(-1)^{k}}{2k+1}}$$
+
+    \begin{algorithm}
+      \caption{Pi Approximation}\label{Pi Approximation}
+        \begin{tabbing}
+          \textbf{Returns:}\\
+            \hspace{1em}\textit{float:} An approximate value of Pi.
+        \end{tabbing}
+        \vspace{1 em}
+      \begin{algorithmic}[1]
+        \State $pi\_estimate \gets 0$
+        \State $sign \gets 1$
+        \State $denominator \gets 1$
+        \For{$i$ in range$(1000)$}
+          \State $pi\_estimate \gets pi\_estimate + sign / denominator$ 
+          \State $sign \gets sign * -1$
+          \State $denominator \gets denominator + 2$ \Comment{Compute next term in series and update variables}
+        \EndFor
+        \State $pi\_estimate \gets pi\_estimate * 4$ \Comment{Multiply by 4 to get estimated value of pi}
+        \State \Return $pi\_estimate$
+      \end{algorithmic}
+    \end{algorithm}
+
+    \begin{flushleft}
+      Leibniz formula is a special case of $arctan(x)$ series, that is as follows.
+      $$\arctan x=x-{\frac {x^{3}}{3}}+{\frac {x^{5}}{5}}-{\frac {x^{7}}{7}}+\cdots$$
+      When x is equal to 1, we get $\arctan(1) = {\frac{1}{4}}\pi.$
+      The advantages of Leibniz formula is as follows:
+      \begin{itemize}
+        \item \textbf{Simple implementation} : It is a simple formula that can be easily programmed, as it requires only basic mathematical operations like power and division.
+        \item \textbf{Accuracy} : The Leibniz formula gives an accurate approximation of $\pi$, with each additional term of the series increasing the accuracy of the approximation. The formula can be used to calculate $\pi$ to any desired level of precision, depending on how many terms of the series are used.
+      \end{itemize}
+    \end{flushleft}
+
+  \subsection{Secant Approximation}
+    \begin{flushleft}
+    The roots of an equation can be derived using the Secant Approximation method.
+    \end{flushleft}
+    $$ x_{n+1} = x_n - \frac{f(x_n) \cdot (x_n - x_{n-1})}{f(x_n) - f(x_{n-1})} $$
+
+    \begin{algorithm}
+    \caption{Secant Approximation}\label{Root Approximation}
+      \begin{tabbing}
+        \textbf{Parameters:}\\
+          \hspace{1em}\textit{func (callable):} The function to find the root of.\\
+          \hspace{1em}\textit{x0 (float):} The first initial guess.\\
+          \hspace{1em}\textit{x1 (float):} The second initial guess.\\
+          \hspace{1em}\textit{eps (float):} The desired level of accuracy.\\
+          \hspace{1em}\textit{max\_iter (int):} The maximum number of iterations to perform.\\
+          
+        \textbf{Returns:}\\
+          \hspace{1em}\textit{float:} Roots of the function.
+      \end{tabbing}
+      \vspace{1 em}
+    \begin{algorithmic}[1]
+      \Function{secant\_method}{func, $x_0$, $x_1$, $eps$, $max\_iter$}
+        \For{$step$ \textbf{in} $range(max\_iter)$}
+          \State $x_2 \gets x_0 - (x_1 - x_0) \cdot \dfrac{func(x_0)}{func(x_1) - func(x_0)}$ \Comment{Calculate new guess for root}
+          \If{$\vert func(x2) \vert < eps$}
+            \State \Return $x2$
+          \Else
+            \State $x0, x1 \gets x1, x2$ \Comment{Update previous guesses}
+          \EndIf
+        \EndFor
+        \State \textbf{raise} ValueError("Maximum number of iterations reached.")
+      \EndFunction
+      \end{algorithmic}
+      \vspace{1 em}
+      
+      \begin{algorithmic}[1]
+        \Function{$func$}{$x$}
+          \State $square \gets x^2$
+          \State $sine \gets \sin(x)$
+          \State $result \gets square + sine - 2$
+          \State \Return $result$
+        \EndFunction
+      \end{algorithmic}      
+    \end{algorithm}
+
+    \begin{flushleft}
+      The secant method is similar to the Newton-Raphson method, but it uses an approximation of the derivative instead of the actual derivative. Secant method has various advantages over other methods like bisection method and Newton-Raphson method. They are as follows:
+      \begin{itemize}
+        \item \textbf{No derivative required} : One of the main advantage of secant method is that we do not need to calculate the derivative of the function whose roots we are trying to calculate. So, writing a program is lot easier that that of Newton-Raphson method, which requires derivative of the function.
+        \item \textbf{Convergence rate} : The secant method has a convergence rate that is faster than the bisection method but slower than the Newton-Raphson method. However, it is less likely to diverge than the Newton-Raphson method.
+        \item \textbf{Applicability to nonlinear functions}: The secant method is applicable to nonlinear functions, whereas the bisection method is applicable only to continuous functions that change sign over an interval.
+        \item \textbf{Multiple roots} : Unlike bisection method, secant method can detect multiple roots in a given interval.
+      \end{itemize}
+    \end{flushleft}
+
+\subsection{Factorial(!)}
+  \begin{flushleft}
+    This is the algorithm used to obtain the factorial of a number.
+  \end{flushleft}
+  % \break
+  \begin{algorithm}
+    \caption{Factorial}\label{factorial}
+    \begin{tabbing}
+      \textbf{Parameters:}\\
+        \hspace{1em}\textit{num(int):} This argument represents the number to calculate the factorial of.\\
+      
+      \textbf{Returns:}\\
+        \hspace{1em}\textit{int:} A numerical value that represents the factorial of the input number. \\
+    \end{tabbing}
+  \begin{algorithmic}[1]
+    \Function{factorial}{$num$}
+      \If{$num < 0$}
+        \State \textbf{raise} Exception(``Factorial can't be calculated for negative numbers'')
+      \EndIf
+      \State $result \gets 1$
+      \For{$i \gets 1$ \textbf{to} $num$}
+        \State $result \gets result \times i$
+      \EndFor
+      \State \textbf{return} $result$
+    \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+
+\subsection{Power($e^x$)}
+  \begin{flushleft}
+    The power of a number can be obtained using the following algorithm.
+  \end{flushleft}
+
+  \begin{algorithm}
+    \caption{Power}\label{exp}
+      \begin{tabbing}
+        \textbf{Parameters:}\\
+          \hspace{1em}\textit{base(int):} This parameter represents the base of the exponentiation.\\
+          \hspace{1em}\textit{exponent(int):} An integer value that specifies how many times the number should be multiplied by itself.\\
+          
+        \textbf{Returns:}\\
+          \hspace{1em}\textit{int:}  A numerical value that represents the result of the exponentiation.
+      \end{tabbing}
+      \vspace{1 em}
+      \begin{algorithmic}
+        \Procedure{Power}{$base, exponent$}
+            \If{$exponent == 0$}
+                \State \Return $1$
+            \Else
+                \State \Return $base * Power(base, exponent - 1)$
+            \EndIf
+        \EndProcedure
+      \end{algorithmic}    
+  \end{algorithm}
+  \begin{flushleft}
+    This algorithm provides a clear and concise way of expressing a mathematical operation, such as power. The recursive algorithm for power is simple and intuitive. 
+    It can also be used to calculate power with non-integer exponents.
+  \end{flushleft}
+\pagebreak

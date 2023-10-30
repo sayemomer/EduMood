@@ -1,0 +1,40 @@
+\documentclass{report}
+\usepackage{ algorithm, algorithmicx, algpseudocode, amsmath, graphicx, imakeidx, hyperref, listings, xcolor}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage{titlesec}
+
+% Prevents the chapter numbers from being displayed
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\Huge}
+
+\makeindex
+
+\begin{document}
+  % Landing page
+  \input{titlepage.tex}
+
+  % Table of Contents
+  \tableofcontents{}
+  \printindex{}
+
+  % Overview of the project
+  \chapter{Dataset}
+    \input{dataset.tex}
+
+  % Contents of Problem 1
+  \chapter{Data Cleaning}
+    \input{data-cleaning.tex}
+
+  % Contents of Problem 2
+  \chapter{Labeling}
+    \input{labeling.tex}
+
+  % Contents of Problem 3
+  \chapter{Dataset Visualization}
+  \input{data-visualisation.tex}
+
+  % Prints the bibtex references
+  \bibliographystyle{unsrt}
+  \bibliography{citation}
+  \printindex
+\end{document}

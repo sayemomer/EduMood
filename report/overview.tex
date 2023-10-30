@@ -1,0 +1,47 @@
+\section{Introduction}
+  Coasters prevent condensation from dripping along the glass, which can damage the surface of tables. The project referred to as \textbf {CHEERS} deals with two circular coasters overlapping each other. The objective of \textbf {CHEERS} is to compute the diameter of the overlapping region such that 
+  the real estate is half that of any of the coasters.
+
+\section{Background}
+  In this project, we determine the roots of an equation to calculate the angle made at the vertex of a coaster using the \textbf{Secant approximation method}. This method approximates the value of a function using a secant line passing through two points on a graph.
+  $$ x_{n+1} = x_n - \frac{f(x_n) \cdot (x_n - x_{n-1})}{f(x_n) - f(x_{n-1})} $$
+
+  \vspace*{20pt}
+  \noindent The Sin/Cos value is approximated using the \textbf{McLaurin Series} which is the sum of derivatives of a function.
+  $$\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!}x^{2n+1}$$
+  $$\cos(x) = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!}x^{2n}$$ 
+
+\section{Scope}
+  The length \textbf{l} of the overlapping coaster region can be computed by the equation
+  $$l = 2R\left(1 - \cos\frac{\alpha}{2}\right)$$
+
+  \indent R \textrightarrow \;radius of the coaster \\
+  \indent $\alpha$ \textrightarrow \;angle created with the vertex at the centre point of the left coaster
+
+  \vspace{20pt}
+  The angle, $\alpha$ can be calculated using
+  $$\alpha - \sin(\alpha) = \frac{\pi}{2}$$
+  
+  \vspace*{20pt}
+  
+  \begin{itemize}
+    \item {The roots of the equation need to be determined to compute the value of $\alpha$. We use the Secant approximation method to arrive at a solution.}
+    \item {The McLaurin series has been used to approximate the Sine and Cos values and, subsequently, calculate l.}
+  \end{itemize}
+
+\section{Objectives}
+\begin{itemize}
+  \item To compute the value of $\Pi$.
+  \item To calculate the exponent of a number using iteration.
+  \item To figure out the factorial of a number using iteration.
+  \item To approximate Sin and Cos using McLaurin Series.
+  \item To find the roots of an equation using Secant Approximation.
+  \item To generate XML files valid with respect to a DTD.
+\end{itemize}
+
+\section{Assumptions}
+\begin{itemize}
+  \item The initial guess values for approximating the roots of an equation will be pre-determined.
+  \item The default precision for approximating Sine and Cos functions has been set to 4.
+  \item A maximum of 100 attempts will be made to find the roots of the equation, after which the function will be considered non-convergent.  
+\end{itemize}
