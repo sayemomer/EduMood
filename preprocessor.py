@@ -7,7 +7,8 @@ import numpy as np
 from keras.preprocessing import image
 from matplotlib import pyplot
 import random
-
+import scipy
+import os
 
 
 # standardizing all the images to fixed size and initializing the dataset existing directories
@@ -23,16 +24,16 @@ batch_size=8
 
 
 if K.image_data_format() == 'channels_first' :
-    input_shape = (3,img_width,img_height)
+    input_shape = (1,img_width,img_height)
 else:
-    input_shape = (img_width,img_height,3)
+    input_shape = (img_width,img_height,1)
 
 
 # assigning all the preprocessing metrics on both the training and testing dataset
 
 
 train_datagen = ImageDataGenerator(
-     rescale=1.0/255,
+    rescale=1.0/255,
     width_shift_range=0.2,
     height_shift_range=0.2,
     shear_range=0.2,
@@ -44,7 +45,7 @@ train_datagen = ImageDataGenerator(
     brightness_range=[0.5, 1.5] 
 )
 
-test_datagen = ImageDataGenerator(rescale=1. / 255)
+test_datagen = ImageDataGenerator(rescale=1.0 / 255)
 
 
 # actual preprocessing happens
@@ -54,13 +55,66 @@ train_generator = train_datagen.flow_from_directory(
      train_data_dir,
      target_size=(img_width,img_height),
      batch_size=batch_size,
-     class_mode='categorical')
+     class_mode='categorical',
+     shuffle=False ,# Do not shuffle to keep labels aligned with images
+     color_mode='grayscale'  # Convert images to grayscale
+     )
+
+
+
+# Initialize parameters
+output_dir_train = 'dataset/preprocessed/train'
+
+# Create output directories for each class
+for class_name in train_generator.class_indices.keys():
+    os.makedirs(os.path.join(output_dir_train, class_name), exist_ok=True)
+
+# Save images
+for i in range(len(train_generator.filenames)):
+    # Get image and its class label
+    img_path = train_generator.filenames[i]
+    class_label = img_path.split('/')[0]
+
+    # Load the image
+    img = train_generator._get_batches_of_transformed_samples(np.array([i]))[0]
+
+    # Save the image
+    save_path = os.path.join(output_dir_train, class_label, os.path.basename(img_path))
+    image.save_img(save_path, img[0])
+
+print("Images have been saved by class in", output_dir_train)
+
 
 validation_generator = test_datagen.flow_from_directory(
      validation_data_dir,
      target_size=(img_width,img_height),
      batch_size=batch_size,
-     class_mode='categorical')
+     class_mode='categorical',
+     color_mode='grayscale',  # Convert images to grayscale
+     )
+
+# Initialize parameters
+output_dir_test = 'dataset/preprocessed/test'
+
+# Create output directories for each class
+for class_name in validation_generator.class_indices.keys():
+    os.makedirs(os.path.join(output_dir_test, class_name), exist_ok=True)
+
+# Save images
+for i in range(len(validation_generator.filenames)):
+    # Get image and its class label
+    img_path = validation_generator.filenames[i]
+    class_label = img_path.split('/')[0]
+
+    # Load the image
+    img = validation_generator._get_batches_of_transformed_samples(np.array([i]))[0]
+
+    # Save the image
+    save_path = os.path.join(output_dir_test, class_label, os.path.basename(img_path))
+    image.save_img(save_path, img[0])
+
+print("Images have been saved by class in", output_dir_test)
+
 
 
 
