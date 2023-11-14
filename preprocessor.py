@@ -14,14 +14,13 @@ import os
 # standardizing all the images to fixed size and initializing the dataset existing directories
 
 
-img_width,img_height =150,150
+img_width,img_height =48,48
 train_data_dir='dataset/train'
 validation_data_dir='dataset/test'
 batch_size=8
 
 
 # checks the color channel of the given images and sets the input shape accordingly
-
 
 if K.image_data_format() == 'channels_first' :
     input_shape = (1,img_width,img_height)
@@ -137,21 +136,7 @@ def plot_distribution(train_generator):
 
 plot_distribution(train_generator)
 
-
-# plot the number of images in each class in the test dataset
-
 # create a bar graph of the number of images per class in the validation dataset
-
-def plot_distribution(validation_generator):
-    # get the total number of images per class
-    counts = [validation_generator.classes.tolist().count(i) for i in range(validation_generator.num_classes)]
-    # get the class labels
-    labels = list(validation_generator.class_indices.keys())
-    # create the figure
-    fig = pyplot.figure(figsize=(10,8))
-    pyplot.bar(labels, counts)
-    pyplot.xticks(rotation=90)
-    pyplot.show()
 
 plot_distribution(validation_generator)
 
@@ -207,6 +192,12 @@ plot_random_images(train_generator)
 
 #show the first random image
 pyplot.imshow(image.load_img(random_images[0]))
+#show the details of the image
+
+print(image.load_img(random_images[0]).size)
+print(image.load_img(random_images[0]).format)
+print(image.load_img(random_images[0]).mode)
+
 
 # plot pixel intensity distribution for the random_images
 
