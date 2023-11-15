@@ -15,17 +15,17 @@ import os
 
 
 img_width,img_height =48,48
-train_data_dir='dataset/train'
-validation_data_dir='dataset/test'
+train_data_dir='dataset_split/Train'
+validation_data_dir='dataset_split/Validation'
 batch_size=8
 
 
 # checks the color channel of the given images and sets the input shape accordingly
 
 if K.image_data_format() == 'channels_first' :
-    input_shape = (1,img_width,img_height)
+    input_shape = (3,img_width,img_height)
 else:
-    input_shape = (img_width,img_height,1)
+    input_shape = (img_width,img_height,3)
 
 
 # assigning all the preprocessing metrics on both the training and testing dataset
@@ -56,7 +56,7 @@ train_generator = train_datagen.flow_from_directory(
      batch_size=batch_size,
      class_mode='categorical',
      shuffle=False ,# Do not shuffle to keep labels aligned with images
-     color_mode='grayscale'  # Convert images to grayscale
+    #  color_mode='grayscale'  # Convert images to grayscale
      )
 
 
@@ -89,11 +89,11 @@ validation_generator = test_datagen.flow_from_directory(
      target_size=(img_width,img_height),
      batch_size=batch_size,
      class_mode='categorical',
-     color_mode='grayscale',  # Convert images to grayscale
+    #  color_mode='grayscale',  # Convert images to grayscale
      )
 
 # Initialize parameters
-output_dir_test = 'dataset/preprocessed/test'
+output_dir_test = 'dataset/preprocessed/validation'
 
 # Create output directories for each class
 for class_name in validation_generator.class_indices.keys():

@@ -57,8 +57,8 @@ def split_files(source_folder, new_parent_folder, split_percentage=15):
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    source_folder = ""
-    destination_folder = ""
+    source_folder = "./dataset"
+    destination_folder = "./dataset_split"
     split_percentage = 15
 
     split_files(source_folder, destination_folder, split_percentage)
