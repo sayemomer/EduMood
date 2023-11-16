@@ -15,8 +15,7 @@ import os
 
 
 img_width,img_height =48,48
-train_data_dir='dataset_split/Train'
-validation_data_dir='dataset_split/Validation'
+train_data_dir='Dataset/Train'
 batch_size=8
 
 
@@ -44,7 +43,7 @@ train_datagen = ImageDataGenerator(
     brightness_range=[0.5, 1.5] 
 )
 
-test_datagen = ImageDataGenerator(rescale=1.0 / 255)
+# test_datagen = ImageDataGenerator(rescale=1.0 / 255)
 
 
 # actual preprocessing happens
@@ -84,35 +83,35 @@ for i in range(len(train_generator.filenames)):
 print("Images have been saved by class in", output_dir_train)
 
 
-validation_generator = test_datagen.flow_from_directory(
-     validation_data_dir,
-     target_size=(img_width,img_height),
-     batch_size=batch_size,
-     class_mode='categorical',
-    #  color_mode='grayscale',  # Convert images to grayscale
-     )
+# validation_generator = test_datagen.flow_from_directory(
+#      validation_data_dir,
+#      target_size=(img_width,img_height),
+#      batch_size=batch_size,
+#      class_mode='categorical',
+#     #  color_mode='grayscale',  # Convert images to grayscale
+#      )
 
 # Initialize parameters
-output_dir_test = 'dataset/preprocessed/validation'
+# output_dir_test = 'dataset/preprocessed/validation'
 
-# Create output directories for each class
-for class_name in validation_generator.class_indices.keys():
-    os.makedirs(os.path.join(output_dir_test, class_name), exist_ok=True)
+# # Create output directories for each class
+# for class_name in validation_generator.class_indices.keys():
+#     os.makedirs(os.path.join(output_dir_test, class_name), exist_ok=True)
 
-# Save images
-for i in range(len(validation_generator.filenames)):
-    # Get image and its class label
-    img_path = validation_generator.filenames[i]
-    class_label = img_path.split('/')[0]
+# # Save images
+# for i in range(len(validation_generator.filenames)):
+#     # Get image and its class label
+#     img_path = validation_generator.filenames[i]
+#     class_label = img_path.split('/')[0]
 
-    # Load the image
-    img = validation_generator._get_batches_of_transformed_samples(np.array([i]))[0]
+#     # Load the image
+#     img = validation_generator._get_batches_of_transformed_samples(np.array([i]))[0]
 
-    # Save the image
-    save_path = os.path.join(output_dir_test, class_label, os.path.basename(img_path))
-    image.save_img(save_path, img[0])
+#     # Save the image
+#     save_path = os.path.join(output_dir_test, class_label, os.path.basename(img_path))
+#     image.save_img(save_path, img[0])
 
-print("Images have been saved by class in", output_dir_test)
+# print("Images have been saved by class in", output_dir_test)
 
 
 
@@ -138,7 +137,7 @@ plot_distribution(train_generator)
 
 # create a bar graph of the number of images per class in the validation dataset
 
-plot_distribution(validation_generator)
+# plot_distribution(validation_generator)
 
 
 # Present a collection of 25 images in a 5 × 5 grid,
