@@ -14,7 +14,7 @@ import os
 # standardizing all the images to fixed size and initializing the dataset existing directories
 
 
-img_width,img_height =48,48
+img_width,img_height =128,128
 train_data_dir='Dataset/Train'
 batch_size=8
 
@@ -32,15 +32,15 @@ else:
 
 train_datagen = ImageDataGenerator(
     rescale=1.0/255,
-    width_shift_range=0.2,
-    height_shift_range=0.2,
-    shear_range=0.2,
+    # width_shift_range=0.2,
+    # height_shift_range=0.2,
+    # shear_range=0.2,
     zoom_range=0.2,
     horizontal_flip=True,
     fill_mode='nearest',
     featurewise_center=True,
     featurewise_std_normalization=True,
-    brightness_range=[0.5, 1.5] 
+    brightness_range=[0.5, 1.5]
 )
 
 # test_datagen = ImageDataGenerator(rescale=1.0 / 255)
