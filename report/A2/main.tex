@@ -1,5 +1,5 @@
 \documentclass{report}
-\usepackage{ algorithm, algorithmicx, algpseudocode, amsmath, graphicx, imakeidx, hyperref, listings, xcolor}
+\usepackage{ algorithm, algorithmicx, algpseudocode, amsmath, graphicx, imakeidx, hyperref, listings, xcolor, multirow, subcaption}
 \usepackage[a4paper, total={6in, 9in}]{geometry}
 \usepackage{titlesec}
 
@@ -17,13 +17,25 @@
   \tableofcontents{}
   \printindex{}
 
-  % Overview of the project
-  \chapter{CNN Architecture}
-    % \input{dataset.tex}
+  \chapter{Dataset}
+  \input{dataset.tex}
 
-  % Contents of Problem 1
+  \chapter{Data Cleaning}
+    \input{data-cleaning.tex}
+
+  \chapter{Labeling}
+    \input{labeling.tex}
+
+  \chapter{Dataset Visualization}
+  \input{data-visualisation.tex}
+
+  \chapter{CNN Architecture}
+    \input{cnn-arch.tex}
+
   \chapter{Evaluation}
-    % \input{data-cleaning.tex}
+    \input{evaluation.tex}
+
+    % \input{ds-provenance.tex}
 
   % Prints the bibtex references
   \bibliographystyle{unsrt}

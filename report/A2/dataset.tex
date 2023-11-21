@@ -1,0 +1,98 @@
+\section{Overview}
+    \noindent The dataset for this project includes images from a few publicly available datasets containing numerous human facial expressions.\\\\
+\vspace*{1em}
+
+\begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} | }
+    \hline
+    \multicolumn{3}{|c|}{\textbf{MMA FACIAL EXPRESSION}} \\
+    \hline
+    \textbf{Total Images} & \textbf{Image/Class } & \textbf{Features}\\
+    \hline
+    $\approx$ 128,000 & $\approx$ 6500 & Compact images Only frontal faces RGB images\\
+    \hline
+\end{tabular}
+% \end{center}
+\vspace*{1em}
+
+\begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} | }
+    \hline
+    \multicolumn{3}{|c|}{\textbf{UTKFace}} \\
+    \hline
+    \textbf{Total Images} & \textbf{Image/Class } & \textbf{Features}\\
+    \hline
+    $\approx$ 20,000 & Unknown & Diverse images Only frontal faces Duplicate-free\\
+    \hline
+\end{tabular}
+% \end{center}
+\vspace*{1em}
+
+\begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} | }
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Real and Fake Face Detection}} \\
+    \hline
+    \textbf{Total Images} & \textbf{Image/Class } & \textbf{Features}\\
+    \hline
+    $\approx$ 2,000 & $\approx$ 1000 & High resolution Only frontal faces Duplicate-free\\
+    \hline
+\end{tabular}
+\vspace*{1em}
+
+% \begin{center} 
+    \begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} | }
+        \hline
+        \multicolumn{3}{|c|}{\textbf{Flickr-Faces-HQ Dataset (FFHQ)}} \\
+        \hline
+        \textbf{Total Images} & \textbf{Image/Class } & \textbf{Features}\\
+        \hline
+        70,000 & $\approx$ 7000 & High quality images Only frontal faces Duplicate-free\\
+        \hline
+    \end{tabular}
+    % \end{center}
+    \vspace*{2em}
+
+    \noindent The final dataset\cite{6721Dataset} for the project was created by picking the most suitable images for the classes under consideration from the above datasets. The final count of images are as follows\\\\
+    % \begin{center} 
+        \begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} ||p{3cm} | }
+            \hline
+            \multicolumn{4}{|c|}{\textbf{Images/class under consideration}} \\
+            \hline
+            \textbf{Neutral} & \textbf{Engaged/Focused} & \textbf{Bored/Tired} & \textbf{Angry/Irritated} \\
+            \hline
+            $\approx$ 1100 & $\approx$ 1100 & $\approx$ 1050 & $\approx$ 1100\\
+            \hline
+        \end{tabular}
+        % \end{center}
+    \vspace*{1em}
+\section{Why these datasets?}
+\noindent The datasets were chosen because of their ease of access, resolution of the images and diversity in terms of age, ethnicity and context. We believe that by having a big corpus of images with diverse mix of emotions, cultures, and scenarios will help in training the model effectively, therby improving it's accuracy. \\
+\section{Provenance Information}
+% \begin{center}
+    \begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} | }
+        \hline
+        \textbf{Dataset} & \textbf{Source} & \textbf{License}\\
+        \hline
+        Face expression recognition dataset & Kaggle \cite{KaggleDataset} & Unknown\\
+        \hline
+        Flickr-Faces-HQ Dataset (FFHQ) & Github \cite{FFHQ} & Creative Commons BY-NC-SA 4.0 license by NVIDIA Corporation \cite{CreativeCommonsBY-NC2.0}\\
+        \hline
+        MMA FACIAL EXPRESSION & Kaggle \cite{MMAKaggleDataset} & Unknown\\
+        \hline
+        UTKFace & Github \cite{UTKFace} & Unknown\\
+        \hline
+        Real and Fake Face Detection & Kaggle \cite{RealFakeKaggle} & CC BY-NC-SA 4.0 DEED\cite{CC-BY-NC-SA4.0-DEED}\\
+        \hline
+    \end{tabular}
+% \end{center}
+
+\section{Excluded Datasets}
+\noindent The following dataset was exluded from the corupus - because of the inferior image size and lack of resolution.\\\\
+\begin{tabular}{ |p{3cm}||p{3cm} ||p{3cm} | }
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Face expression recognition dataset \cite{KaggleDataset}}} \\
+    \hline
+    \textbf{Total Images} & \textbf{Image/Class } & \textbf{Features}\\
+    \hline
+    $\approx$ 37,000 & $\approx$ 4000 & Greyscale images Only frontal faces Pre-labeled\\
+    \hline
+\end{tabular}
+\vspace*{1em}
