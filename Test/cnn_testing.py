@@ -1,14 +1,17 @@
+from matplotlib import image
 import torch
 import numpy as np
 import torch.nn as nn
 from sklearn.metrics import confusion_matrix, classification_report, precision_recall_fscore_support, accuracy_score
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
-from DataLoder.dataLoader import custom_loader
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Import from structured project directories
+
+import sys
+sys.path.append('./')
 from Model.model import MultiLayerFCNet
 from DataLoder.dataLoader import custom_loader
 import Config.config as config
@@ -81,3 +84,4 @@ print(f'Macro-average recall: {recall:.4f}')
 print(f'Macro-average F1-score: {f1_score:.4f}')
 print("\nClassification Report:")
 print(class_report)
+
