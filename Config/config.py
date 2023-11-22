@@ -17,6 +17,8 @@ OUTPUT_SIZE = 4  # Number of output classes
 # Path configuration
 TRAIN_DATA_PATH = './dataset/Train'
 MODEL_SAVE_PATH = './model/best_model.pth'
+MODEL_SAVE_PATH_EARLY_STOP = './model/best_model_stop.pth'
+STOP_MODEL_SAVE_PATH = './model/best_model_stop.pth'
 TEST_DATA_PATH = './dataset/Test'
 CLASS_NAMES = ['Angry', 'Bored', 'Engaged', 'Neutral']
 

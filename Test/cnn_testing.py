@@ -65,6 +65,10 @@ with torch.no_grad():
 
 accuracy = accuracy_score(all_labels, all_preds)
 conf_matrix = confusion_matrix(all_labels, all_preds)
+# print conf_matrix
+
+print("Confusion Matrix:")
+print(conf_matrix)
 class_report = classification_report(all_labels, all_preds)
 precision, recall, f1_score, _ = precision_recall_fscore_support(all_labels, all_preds, average='macro')
 
@@ -84,4 +88,3 @@ print(f'Macro-average recall: {recall:.4f}')
 print(f'Macro-average F1-score: {f1_score:.4f}')
 print("\nClassification Report:")
 print(class_report)
-
