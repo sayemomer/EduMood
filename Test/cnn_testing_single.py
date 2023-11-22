@@ -1,3 +1,4 @@
+import random
 from PIL import Image
 from torchvision import transforms
 import torch
@@ -71,5 +72,42 @@ plt.imshow(img)
 # Get the original class label
 original_class_label = os.path.basename(os.path.dirname(image_path))
 #title should be the predicted label and the original label
+def get_random_images(test_dir, num_images=10):
+    all_images = []
+    for class_dir in os.listdir(test_dir):
+        class_path = os.path.join(test_dir, class_dir)
+        if os.path.isdir(class_path):
+            images = [os.path.join(class_path, img) for img in os.listdir(class_path)]
+            all_images.extend(images)
+    return random.sample(all_images, num_images)
+
+# Get 10 random images
+random_images = get_random_images(config.TEST_DATA_PATH, 10)
+
 plt.title(f'Predicted: {config.CLASS_NAMES[predicted_class_label]}, Original: {original_class_label}')
 plt.show()
+
+# Plot and predict for each image on a grid
+num_rows = 2
+num_cols = 5
+
+fig, axes = plt.subplots(num_rows, num_cols, figsize=(1.5*num_cols,2*num_rows))
+for i in range(len(random_images)):
+    predicted_class_label = test_single_image(random_images[i], model, device, transform)
+    
+    # Load and plot the image
+    img = cv2.imread(random_images[i])
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    axes.ravel()[i].imshow(img)
+    
+    # Get the original class label
+    original_class_label = os.path.basename(os.path.dirname(random_images[i]))
+    
+    # Show predicted and original labels
+    axes.ravel()[i].set_title(f'Predicted: {config.CLASS_NAMES[predicted_class_label]}, Original: {original_class_label}',fontsize=6)
+    axes.ravel()[i].set_axis_off()
+plt.tight_layout()
+plt.show()
+
+
+
