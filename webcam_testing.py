@@ -107,6 +107,11 @@ while True:
 
     class_names = ['Angry', 'Bored', 'Engaged', 'Neutral']  # Define the class names
 
+    #display the predicted label with bigger font size
+    cv2.putText(frame, class_names[predicted.item()], (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+    cv2.imshow('Webcam', frame)
+
     #print the predicted class
     print(class_names[predicted.item()])
 
