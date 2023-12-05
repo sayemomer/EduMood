@@ -1,14 +1,15 @@
-# Part 1 & 2
+# Part 1 & 2 & 3
 Course project for COMP 6721 - A Deep Learning Convolutional Neural Network (CNN) using PyTorch that analyses images of students in a classroom or online meeting setting and categorizes them into distinct states or activities.
 
 # Submission Contents
 
 1. A file containing the dependencies for running the Python script 
 2. Python code for pre-processing and visualizing the data
-3. Python code for training, evaluating and testing the models
-4. Originality form - signed by all team members
-5. Project report - structured per the guidelines
-6. Provenance information for the dataset used
+3. Python code for training, evaluating and testing the best model and 2 variants
+4. Python code for K-fold cross validation
+5. Originality form - signed by all team members
+6. Project report - structured per the guidelines
+7. Provenance information for the dataset used
 
 # Steps for Running the Python File
 
@@ -51,7 +52,7 @@ First, the images in the dataset will be classifed into 4 classes. The number of
 
 ### Execution - train/validate and test
 ```python
-python3 cnn_training_main.py
+python3 cnn_training_early_stop.py
 python3 cnn_testing.py
 ```
 ### Expected Output
@@ -66,3 +67,11 @@ python3 cnn_testing_variant_2.py
 ```
 ### Expected Output
 The variants will be trained over 50 epochs with the accuracy and loss indicated over each epoch. The best variant models are available under the Model folder
+
+### K-fold cross validation 
+```python
+python3 cnn_training_kfold.py
+```
+### Expected Output
+K-fold splits the dataset equally into 10.It trains and tests the dataset on different split instance. It prints the output on each instance.
+
