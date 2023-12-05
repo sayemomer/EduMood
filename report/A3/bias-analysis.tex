@@ -1,0 +1,84 @@
+\section{Introduction}
+The bias attributes of Age and Gender were analysed to check for disparities in performance across different subgroups. This included the following steps
+\begin{itemize}
+    \item The dataset was split into subclasses based on the attributes 
+        \subitem Gender - Male and Female
+        \subitem Age - Young, Mid and Senior
+    \item The performance metrics of the CNN model were evaluated for each subgroup to check for the presence of biases.
+    \item The dataset was augmented to mitigate the bias.
+\end{itemize}
+\section{Bias Detection Results}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textbf{Attribute} & \textbf{Group} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+        \hline
+        \multirow{4}{*}{Age} & Young & 0.63 & 0.67 & 0.67 & 0.66 \\
+        \cline{2-6}
+         & Middle-aged & 0.71 & 0.69 & 0.70 & 0.69 \\
+        \cline{2-6}
+         & Senior & 0.55 & 0.57 & 0.55 & 0.54 \\
+        \cline{2-6}
+         & \textbf{Average} & 0.63 & 0.64 & 0.64 & 0.63 \\
+        \hline
+        \multirow{3}{*}{Gender} & Male & 0.67 & 0.66 & 0.66 & 0.65 \\
+        \cline{2-6}
+        & Female & 0.67 & 0.68 & 0.69 & 0.69 \\
+        \cline{2-6}
+        & \textbf{Average} & 0.67 & 0.67 & 0.67 & 0.67 \\
+        \hline
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Overall System Average }} & 0.65 & 0.65 & 0.65 & 0.65 \\
+        \hline
+    \end{tabular}
+    \caption{ Bias Analysis on Model, part II}
+    \label{tab:bias-analysis}
+\end{table}
+
+\begin{itemize}
+    \item There is a significant difference in accuracy between the Middle and Senior age groups.
+    \item The Accuracy, Precision and Recall and F1 are relatively stable across all classes in the Gender attribute.
+    \item There exists small disparities in both Age and Gender attributes, particularly in terms of Accuracy, Precision, Recall, and F1-Score.
+    \item The performance variations suggest that the model may have different levels of effectiveness across various demographic groups.
+\end{itemize}
+\vspace*{1em}
+\section{Bias Mitigation Steps}
+\noindent The system was biased against people in the Senior age category. For bias mitigation, the dataset was rebalanced by increasing the count of images from the Senior age category and the images from the Mid and Young age brackets were reduced. The subclasses in the Gender attributes did not show any biases. The CNN model remains unchanged from part II.
+
+\section{Comparative Performance Analysis}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textbf{Attribute} & \textbf{Group} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+        \hline
+        \multirow{4}{*}{Age} & Young & 0.62 & 0.66 & 0.66 & 0.65 \\
+        \cline{2-6}
+         & Middle-aged & 0.67 & 0.65 & 0.65 & 0.65 \\
+        \cline{2-6}
+         & Senior & 0.64 & 0.64 & 0.63 & 0.62 \\
+        \cline{2-6}
+         & \textbf{Average} & 0.64 & 0.65 & 0.65 & 0.64 \\
+        \hline
+        \multirow{3}{*}{Gender} & Male & 0.66 & 0.65 & 0.64 & 0.64 \\
+        \cline{2-6}
+        & Female & 0.65 & 0.66 & 0.67 & 0.66 \\
+        \cline{2-6}
+        & \textbf{Average} & 0.65 & 0.65 & 0.65 & 0.65 \\
+        \hline
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Overall System Average }} & 0.64 & 0.65 & 0.65 & 0.64 \\
+        \hline
+    \end{tabular}
+    \caption{ Bias Analysis on Model, part III}
+    \label{tab:bias-analysis}
+\end{table}
+
+\begin{itemize}
+    \item Model II has slightly better performance in the Middle-aged category compared to the adjusted model.
+    \item Both models have similar performance in the Male and Female categories.
+    \item The updated model has a significant performance improvement in the Senior age category.
+    \item This is primarily due to the bias mitigation strategy of data augmentation and the early-stop training strategy.
+\end{itemize}
