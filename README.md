@@ -1,4 +1,4 @@
-# Part 1 & 2 & 3
+# Overview
 Course project for COMP 6721 - A Deep Learning Convolutional Neural Network (CNN) using PyTorch that analyses images of students in a classroom or online meeting setting and categorizes them into distinct states or activities.
 
 # Submission Contents
@@ -18,7 +18,7 @@ Course project for COMP 6721 - A Deep Learning Convolutional Neural Network (CNN
 -  Pip3 
 ### Setup the dataset
 
-Download and unzip the [dataset](https://drive.google.com/drive/folders/15KX23UhhYKx6UGpm-GAEtIsPpweVRHJd?usp=drive_link) in the parent folder.
+Download and unzip the [Dataset](https://drive.google.com/drive/folders/15KX23UhhYKx6UGpm-GAEtIsPpweVRHJd?usp=drive_link) in the parent folder.
 
 ### Setup Virtual Environment
 
@@ -73,5 +73,5 @@ The variants will be trained over 50 epochs with the accuracy and loss indicated
 python3 cnn_training_kfold.py
 ```
 ### Expected Output
-K-fold splits the dataset equally into 10.It trains and tests the dataset on different split instance. It prints the output on each instance.
+K-fold analysis for the main model splits the dataset into 10 equal parts, 9/10 parts is used for training and 1 part is used for validation. This process is repeated 10 times. With each iteration, the training loss, training accuracy, validation loss and validation accuracy are printed. Early stop mechanism is implemented to halt the training process for the Kth iteration if no improvement is observed.
 
