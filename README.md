@@ -14,14 +14,94 @@ merous human facial expressions.
 ## Dataset Summary
 Here is a summary of the datasets used in the project:
 
-![Dataset Summary](images/dataset_summary.png)
+    IMDB-WIKI
+        Total Images: ~500,000
+        Image/Class: ~10,000
+        Features: Age / Gender labels
 
-## Submission Contents
+    MMA FACIAL EXPRESSION
+        Total Images: ~128,000
+        Image/Class: ~6,500
+        Features: Compact images, Only frontal faces, RGB images
+
+    UTKFace
+        Total Images: ~20,000
+        Image/Class: Unknown
+        Features: Diverse images, Only frontal faces, Duplicate-free
+
+    Real and Fake Face Detection
+        Total Images: ~2,000
+        Image/Class: ~1,000
+        Features: High resolution, Only frontal faces, Duplicate-free
+
+    Flickr-Faces-HQ Dataset (FFHQ)
+        Total Images: 70,000
+        Image/Class: ~7,000
+        Features: High quality images, Only frontal faces, Duplicate-free
+
+## Contents
 1. Dependencies for running the Python script.
 2. Python code for pre-processing, visualizing data, training, evaluating, and testing models.
 3. Signed Originality form by all team members.
 4. Structured Project report per guidelines.
 5. Provenance information for datasets used.
+
+## Data Cleaning Process for Facial Expression Recognition
+
+The data cleaning process is a critical step in preparing the datasets for training the facial expression recognition model. It involves standardizing the images, reducing complexity, and augmenting the dataset for better generalization.
+
+## Cleaning Techniques
+
+### Resizing Images
+All images are resized to a standard dimension to ensure consistency across the dataset.
+
+```python
+from keras.preprocessing.image import ImageDataGenerator
+
+# Assuming images are in a directory 'data/train'
+datagen = ImageDataGenerator(rescale=1./255)
+
+# Standard dimensions for all images
+standard_size = (150, 150)
+
+# Generator will resize images automatically
+train_generator = datagen.flow_from_directory(
+    'data/train',
+    target_size=standard_size,
+    color_mode='grayscale', # Convert images to grayscale
+    batch_size=32,
+    class_mode='categorical'
+)
+```
+### Grayscale Conversion
+
+Images are converted to grayscale to focus on the important features without the distraction of color.
+### Brightness Normalization
+
+Uniform lighting conditions are applied to images to mitigate the effects of varying illumination.
+
+```
+# Additional configuration for ImageDataGenerator to adjust brightness
+
+datagen = ImageDataGenerator(
+    rescale=1./255,
+    brightness_range=[0.8,1.2] # Adjust brightness
+)
+```
+### Cropping
+
+Images are cropped to remove background noise and focus on the face, the most important part for emotion detection.
+
+## CNN Architecture
+
+#### Input: 48x48 RGB images.
+#### Convolutional Layers: Multiple layers with 4x4 kernels, batch normalization, leaky ReLU activation.
+#### Pooling Layers: Max pooling layers with 2x2 kernels.
+#### Fully Connected Layers: 2 fully connected layers with dropout and softmax activation.
+#### Parallel Processing: nn.DataParallel for multi-GPU support.
+#### Training Monitoring: Tracks validation set performance to optimize model parameters.
+
+
 
 ## Steps for Running the Python File
 
