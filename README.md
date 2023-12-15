@@ -94,12 +94,12 @@ Images are cropped to remove background noise and focus on the face, the most im
 
 ## CNN Architecture
 
-#### Input: 48x48 RGB images.
-#### Convolutional Layers: Multiple layers with 4x4 kernels, batch normalization, leaky ReLU activation.
-#### Pooling Layers: Max pooling layers with 2x2 kernels.
-#### Fully Connected Layers: 2 fully connected layers with dropout and softmax activation.
-#### Parallel Processing: nn.DataParallel for multi-GPU support.
-#### Training Monitoring: Tracks validation set performance to optimize model parameters.
+- Input: 48x48 RGB images.
+- Convolutional Layers: Multiple layers with 4x4 kernels, batch normalization, leaky ReLU activation.
+- Pooling Layers: Max pooling layers with 2x2 kernels.
+- Fully Connected Layers: 2 fully connected layers with dropout and softmax activation.
+- Parallel Processing: nn.DataParallel for multi-GPU support.
+- Training Monitoring: Tracks validation set performance to optimize model parameters.
 
 
 
