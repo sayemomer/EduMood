@@ -64,7 +64,7 @@ output_size = 4  # Number of output classes 4
 
 model = MultiLayerFCNet(input_size,hidden_size,output_size)  # Instantiate your model (fill in args)
 
-state_dict = torch.load('./model/best_model.pth')
+state_dict = torch.load('./model/best_model_stop.pth')
 new_state_dict = {k[len("module."):]: v for k, v in state_dict.items()}
 model.load_state_dict(new_state_dict)
 model.eval()

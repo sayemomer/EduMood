@@ -23,7 +23,7 @@ if torch.cuda.device_count() > 1:
     model = nn.DataParallel(model)
 
 # Load the saved model
-model = load_model_for_testing(model, config.MODEL_SAVE_PATH).to(device)
+model = load_model_for_testing(model, config.STOP_MODEL_SAVE_PATH).to(device)
 
 # Set the model to evaluation mode
 model.eval()
@@ -48,7 +48,7 @@ def test_single_image(image_path, model, device, transform):
     return predicted.item()
 
 # Path to your single image
-image_path = './Dataset/Test/Angry/3370Exp0angry_worker_52.jpg'
+image_path = './Dataset/Test/Angry/16Exp0angry_actor_18.jpg'
 
 #plot the image and set the original lebel and the predicted label
 
