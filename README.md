@@ -11,6 +11,49 @@ merous human facial expressions.
 
 2. **Classroom Activity Recognition:** A Deep Learning CNN using PyTorch designed to analyze images of students in a classroom or online meeting setting, categorizing them into distinct states or activities.
 
+## Contents
+  - [Classification Labels](#classification-labels)
+
+  - [Data Collection & Preprocessing](#data-collection--preprocessing)
+    - [Dataset Summary](#dataset-summary)
+    - [Images/Class Distribution](#imagesclass-distribution)
+    - [Data Cleaning Process for Facial Expression Recognition](#data-cleaning-process-for-facial-expression-recognition)
+      - [Labeling](#labeling)
+      - [Resizing Images](#resizing-images)
+      - [Grayscale Conversion](#grayscale-conversion)
+      - [Brightness Normalization](#brightness-normalization)
+      - [Cropping](#cropping)
+    - [Class Distribution](#class-distribution-1)
+    - [Sample Images](#sample-images)
+    - [Pixel Intensity Distribution](#pixel-intensity-distribution)
+  - [CNN Architecture , Training, & Evaluation](#cnn-architecture--training--evaluation)
+    - [Architecture](#architecture)
+  - [Bias Analysis, Model refinement, & deep evaluation](#bias-analysis-model-refinement--deep-evaluation)
+    - [Performance Metrics](#performance-metrics)
+    - [Variants comparison](#variants-comparison)
+    - [Confusion Matrix Analysis](#confusion-matrix-analysis)
+      - [Main Model](#main-model)
+      - [Variants](#variants)
+    - [Impact of Architectural Variations](#impact-of-architectural-variations)
+    - [Bias Analysis](#bias-analysis)
+      - [Bias detection result](#bias-detection-result)
+      - [Bias Mitigation](#bias-mitigation)
+      - [Bias detection result after mitigation](#bias-detection-result-after-mitigation)
+    - [K-fold Cross Validation](#k-fold-cross-validation)
+      - [Original Model](#original-model)
+      - [K-fold Model](#k-fold-model)
+      - [original vs k-fold](#original-vs-k-fold)
+  - [Steps for Running the Python File](#steps-for-running-the-python-file)
+    - [Prerequisites](#prerequisites)
+    - [Setup the Datasets](#setup-the-datasets)
+    - [Setup Virtual Environment](#setup-virtual-environment)
+    - [Install Dependencies](#install-dependencies)
+    - [Execution Steps](#execution-steps)
+    - [Expected Output](#expected-output)
+
+ - [Refecence to the original project](#refecence-to-the-original-project)
+  - [Conclusion and Future Work](#conclusion-and-future-work)
+
 ## Classification Labels
 
 - Angry
@@ -29,39 +72,38 @@ Here is a summary of the datasets used in the project:
         Total Images: ~500,000
         Image/Class: ~10,000
         Features: Age / Gender labels
+        Source: https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/
 
     MMA FACIAL EXPRESSION
         Total Images: ~128,000
         Image/Class: ~6,500
         Features: Compact images, Only frontal faces, RGB images
+        Source: https://www.kaggle.com/datasets/mahmoudima/mma-facial-expression
 
     UTKFace
         Total Images: ~20,000
         Image/Class: Unknown
         Features: Diverse images, Only frontal faces, Duplicate-free
+        Source: https://susanqq.github.io/UTKFace/
 
     Real and Fake Face Detection
         Total Images: ~2,000
         Image/Class: ~1,000
         Features: High resolution, Only frontal faces, Duplicate-free
+        Source: https://www.kaggle.com/ciplab/real-and-fake-face-detection`
 
     Flickr-Faces-HQ Dataset (FFHQ)
         Total Images: 70,000
         Image/Class: ~7,000
         Features: High quality images, Only frontal faces, Duplicate-free
+        Source:https://github.com/NVlabs/ffhq-dataset
 
-## Contents
-1. Dependencies for running the Python script.
-2. Python code for pre-processing, visualizing data, training, evaluating, and testing models.
-3. Signed Originality form by all team members.
-4. Structured Project report per guidelines.
-5. Provenance information for datasets used.
+## Images/Class Distribution
+
 
 ## Data Cleaning Process for Facial Expression Recognition
 
-The data cleaning process is a critical step in preparing the datasets for training the facial expression recognition model. It involves standardizing the images, reducing complexity, and augmenting the dataset for better generalization.
-
-## Cleaning Techniques
+### Labeling
 
 ### Resizing Images
 All images are resized to a standard dimension to ensure consistency across the dataset.
@@ -103,6 +145,13 @@ datagen = ImageDataGenerator(
 
 Images are cropped to remove background noise and focus on the face, the most important part for emotion detection.
 
+## Class Distribution
+
+## Sample Images
+
+## Pixel Intensity Distribution
+
+
 # CNN Architecture , Training, & Evaluation
 
 ## Architecture
@@ -116,9 +165,40 @@ Images are cropped to remove background noise and focus on the face, the most im
 
 # Bias Analysis, Model refinement, & deep evaluation
 
+## Performance Metrics
+
+## Variants comparison
+
+## Confusion Matrix Analysis
+
+### Main Model
+### Variants
+
+## Impact of Architectural Variations
+
+## Bias Analysis
+
+### Bias detection result
+
+### Bias Mitigation
+
+### Bias detection result after mitigation
 
 
-## Steps for Running the Python File
+## K-fold Cross Validation
+
+### Original Model
+
+### K-fold Model
+
+### original vs k-fold
+
+
+
+
+
+
+# Steps for Running the Python File
 
 ### Prerequisites
 - Python3
@@ -157,4 +237,8 @@ pip3 install -r requirements.txt
 
 ---
 
+# Refecence to the original project
+
 For further details on methodology, datasets, and findings, refer to the complete project reports.
+
+# Conclusion and Future Work
