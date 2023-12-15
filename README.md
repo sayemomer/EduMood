@@ -11,6 +11,17 @@ merous human facial expressions.
 
 2. **Classroom Activity Recognition:** A Deep Learning CNN using PyTorch designed to analyze images of students in a classroom or online meeting setting, categorizing them into distinct states or activities.
 
+## Classification Labels
+
+- Angry
+- Neutral
+- Engaged
+- Bored
+
+
+# Data Collection & Preprocessing
+
+
 ## Dataset Summary
 Here is a summary of the datasets used in the project:
 
@@ -92,7 +103,9 @@ datagen = ImageDataGenerator(
 
 Images are cropped to remove background noise and focus on the face, the most important part for emotion detection.
 
-## CNN Architecture
+# CNN Architecture , Training, & Evaluation
+
+## Architecture
 
 - Input: 48x48 RGB images.
 - Convolutional Layers: Multiple layers with 4x4 kernels, batch normalization, leaky ReLU activation.
@@ -100,6 +113,8 @@ Images are cropped to remove background noise and focus on the face, the most im
 - Fully Connected Layers: 2 fully connected layers with dropout and softmax activation.
 - Parallel Processing: nn.DataParallel for multi-GPU support.
 - Training Monitoring: Tracks validation set performance to optimize model parameters.
+
+# Bias Analysis, Model refinement, & deep evaluation
 
 
 
