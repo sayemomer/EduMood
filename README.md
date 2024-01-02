@@ -290,4 +290,6 @@ pip3 install -r requirements.txt
 
 For further details on methodology, datasets, and findings, refer to the complete project reports.
 
+[Report link](https://drive.google.com/file/d/1UK6j3DjhrO8KpWphuGjH5DNlrq098ysv/view?usp=sharing)
+
 # Conclusion and Future Work
