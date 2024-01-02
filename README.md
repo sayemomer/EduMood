@@ -24,8 +24,6 @@ merous human facial expressions.
       - [Brightness Normalization](#brightness-normalization)
       - [Cropping](#cropping)
     - [Class Distribution](#class-distribution-1)
-    - [Sample Images](#sample-images)
-    - [Pixel Intensity Distribution](#pixel-intensity-distribution)
   - [CNN Architecture , Training, & Evaluation](#cnn-architecture--training--evaluation)
     - [Architecture](#architecture)
   - [Bias Analysis, Model refinement, & deep evaluation](#bias-analysis-model-refinement--deep-evaluation)
@@ -100,6 +98,12 @@ Here is a summary of the datasets used in the project:
 
 ## Images/Class Distribution
 
+    Class	Training	Test
+    Angry	  600	    60
+    bored	  800	    50
+    Engaged	  850	    70
+    Neutral	  750	    65
+
 
 ## Data Cleaning Process for Facial Expression Recognition
 
@@ -167,36 +171,81 @@ Images are cropped to remove background noise and focus on the face, the most im
 
 ## Performance Metrics
 
+![Project Banner](images/performance_metrics.png)
+
 ## Variants comparison
+
+- Main Model beats Variant 1 in accuracy and macro metrics.
+- Main Model slightly more accurate than Variant 2.
+- Variant 2 has better macro precision, less false positives.
+- Trade-off: Higher recall can mean more false positives; higher precision means fewer false alarms.
 
 ## Confusion Matrix Analysis
 
+- There’s a consistent trend across models where Engaged (Class 3) and Bored (Class 2) are often confused. This could be due to similarities in facial expressions or insufficient distinguishing features.
+- The Neutral and Angry classes seem to be well-recognized across all models, suggesting that these facial expressions are more consistent and universally recognizable.
+- Overall, distinguishing between expressions Class 3 (Engaged) and Class 2 (Bored) poses a challenge for these models. This might be due to the lack of diversity and quality of data.
+
 ### Main Model
+- Class 2 (Bored) is often confused with Class 3 (Engaged).
 ### Variants
+
+- Similar patterns of confusion as the Main Model, with Class 3 (Engaged) and Class 2 (Bored) having notable misclassifications.
 
 ## Impact of Architectural Variations
 
+- Adding layers in Variant 2 did not improve performance consistently.
+- More layers could capture complex features but risk overfitting.
+- Decreased accuracy in Variant 2 might stem from overfitting.
+- Main Model's moderate kernel size balances detection of fine and broad features, yielding highest accuracy.
+
 ## Bias Analysis
+
+The bias attributes of Age and Gender were analysed to check for disparities in performance across different subgroups. This included the following steps
+
+- The dataset was split into subclasses based on the attributes Gender - Male and Female
+Age - Young, Mid and Senior
+- The performance metrics of the CNN model were evaluated for each subgroup to check for the presence of biases.
+• The dataset was augmented to mitigate the bias.
+
 
 ### Bias detection result
 
+![bias report](images/bias_report.png)
+
 ### Bias Mitigation
+
+    The system was biased against people in the Senior age category. For bias mitigation, the dataset was rebalanced by increasing the count of images from the Senior age category and the images from the Mid and Young age brackets were reduced. The subclasses in the Gender attributes did not show any biases.
 
 ### Bias detection result after mitigation
 
+![bias report after mitigation](images/bias_report_after_mitigation.png)
 
 ## K-fold Cross Validation
 
 ### Original Model
 
+![kfold](images/k_fold_main.png)
+
+- Accuracy graph displays fluctuations between 0.63 and 0.69 over 10 measurements.
+- Notable accuracy dips occur at the 4th, 6th, and 9th measurements, with the 6th showing the sharpest drop.
+- Precision is relatively stable; both Recall and F1 Score significantly drop at the 5th fold.
+- The metrics reveal inconsistent model performance, particularly poor at the 5th fold.
+
 ### K-fold Model
+
+![kfold](images/k_fold_bias.png)
+
+- Accuracy across 10 folds, with a score varying from just above 0.57 to just under 0.65.
+- Accuracy significantly improves at fold 7, peaking near 0.65 before declining again.
+- Macro Precision and Recall exhibit significant volatility, while the F1 Score remains more consistent.
+- All three metrics peak at fold 8, with Macro Recall showing the greatest increase.
 
 ### original vs k-fold
 
-
-
-
-
+- K-fold cross-validation yields slightly higher average accuracy than train/test split due to varied data subset performance.
+- It evaluates the model over multiple folds for a comprehensive performance assessment.
+- Consistent performance across k-folds suggests better model generalization and can influence model selection.
 
 # Steps for Running the Python File
 
