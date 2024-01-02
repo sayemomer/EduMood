@@ -98,11 +98,11 @@ Here is a summary of the datasets used in the project:
 
 ## Images/Class Distribution
 
-    Class	Training	Test
-    Angry	  600	    60
-    bored	  800	    50
-    Engaged	  850	    70
-    Neutral	  750	    65
+    Class Training Test
+    Angry	  600	  60
+    bored	  800	  50
+    Engaged	850	  70
+    Neutral	750	  65
 
 
 ## Data Cleaning Process for Facial Expression Recognition
