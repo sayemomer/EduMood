@@ -66,36 +66,19 @@ merous human facial expressions.
 ## Dataset Summary
 Here is a summary of the datasets used in the project:
 
-    IMDB-WIKI
-        Total Images: ~500,000
-        Image/Class: ~10,000
-        Features: Age / Gender labels
-        Source: https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/
+    BIXI - Movements history
+        Total row: ~4018722
+        Column: 6
+        Features: start_date, start_station_code ,end_date , end_station_code, duration_sec, is_member
+        Source: https://bixi.com/en/open-data/
 
-    MMA FACIAL EXPRESSION
-        Total Images: ~128,000
-        Image/Class: ~6,500
-        Features: Compact images, Only frontal faces, RGB images
-        Source: https://www.kaggle.com/datasets/mahmoudima/mma-facial-expression
+    Historical Hourly Weather Data
+        Total row: ~45253
+        Column: 37
+        Features: 30 US & Canadian Cities + 6 Israeli Cities
+        Source: [https://www.kaggle.com/datasets/mahmoudima/mma-facial-expression](https://www.kaggle.com/datasets/selfishgene/historical-hourly-weather-data)
 
-    UTKFace
-        Total Images: ~20,000
-        Image/Class: Unknown
-        Features: Diverse images, Only frontal faces, Duplicate-free
-        Source: https://susanqq.github.io/UTKFace/
-
-    Real and Fake Face Detection
-        Total Images: ~2,000
-        Image/Class: ~1,000
-        Features: High resolution, Only frontal faces, Duplicate-free
-        Source: https://www.kaggle.com/ciplab/real-and-fake-face-detection`
-
-    Flickr-Faces-HQ Dataset (FFHQ)
-        Total Images: 70,000
-        Image/Class: ~7,000
-        Features: High quality images, Only frontal faces, Duplicate-free
-        Source:https://github.com/NVlabs/ffhq-dataset
-
+  
 ## Images/Class Distribution
 
     Class Training Test
